@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 def home(request):
     bprofile = BlogProfile.objects.get(pk=1)
     carousel = Blog_Post.objects.filter(featured=True)
-    newpost = Blog_Post.objects.all()
+    newpost = Blog_Post.objects.all().order_by('-created_on')
     p = Paginator(newpost,10)
     page = request.GET.get('page')
     pagine = p.get_page(page)
