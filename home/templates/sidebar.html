@@ -1,0 +1,55 @@
+<div class="col-12 col-md-4">
+    <div class="border">
+        <div>
+            <h4 class="bg-dark text-center text-white mb-4 p-1" >TRENDING SONGS RIGHT NOW</h4>
+        </div>
+        
+        {% if trendsongs %}
+            {% for item in trendsongs %}
+              
+            
+        <div class="card mb-3 songs" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <a href="{% url 'detail' item.slug %}"><img src="{{item.image.url}}" class="img-fluid rounded-start" style="height: 70px;"></a>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a href="{% url 'detail' item.slug %}"><h6 class="card-title">{{item.title}}</h6></a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <hr class="rule">
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="border mt-4">
+        <div>
+            <h4 class="bg-success text-center text-white mb-4 p-1" >MOST VIEWED POST</h4>
+        </div>
+        
+        {% if mostviewed %}
+           {% for item in mostviewed %}
+             
+           <div class="card mb-3 songs" >
+               <div class="row g-0">
+                 <div class="col-md-4">
+                   <a href="{% url 'detail' item.slug %}"><img src="{{item.image.url}}" class="img-fluid rounded-start" style="height: 70px;"></a>
+                 </div>
+                 <div class="col-md-8">
+                   <div class="card-body">
+                     <a href="{% url 'detail' item.slug %}"><h6 class="card-title">{{item.title}}</h6></a>
+                   </div>
+                 </div>
+               </div>
+           </div>
+           <hr class="rule">
+           {% endfor %} 
+        {% endif %}
+            
+        
+    </div>
+</div>
+</div>
+</div>

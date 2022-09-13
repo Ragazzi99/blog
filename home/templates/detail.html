@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %} {% include 'header.html' %} {% endblock header %}
+
+
+{% block content %}
+<div class="container mt-3 mb-5">
+    <div class="row">
+        <div class="col-12 col-md-8 det">
+            <h4 class="bg-danger text-center text-white mb-4 p-1">POLITICS</h4>
+           <div>
+               <h1>{{detail.title}}</h1>
+               <p class="mb-0">Published on {{detail.created_on}}</p>
+               <p class="mb-5">By <span>{{detail.writer}}</span></p>
+               <img src="{{detail.image.url}}" alt="" style="height: 400px;">
+               <p class="mt-5 ptext">{{detail.postbody|safe}}</p>
+           </div>
+           <hr>
+           <!-- Comments Form -->
+           <section>
+            {% if comments %}
+              {% for item in comments  %}
+                <div class="commentbox">
+                  <article>
+                    <span>By {{item.commenter}}</span>
+                    <p>
+                      <strong>
+                        {{item.body}}
+                      </strong>
+                    </p>
+                  </article>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <p>
+                  <h4>Your Comment</h4>
+                </p>
+                {{form.as_p}}
+              </div>
+              <input name="postid" type="hidden" postid="{{post.id}}">
+              <button class="btn btn-danger">Comment</button>
+            </form>
+            {% else %}
+              <h3>Login to Comment</h3>
+              <p>
+                <a href="{% url 'signin' %}"><button class="btn btn-danger">Login</button></a>
+              </p>
+            {% endif %}
+          </section>
+        </div>
+{% endblock content %}
+{% block sidebar %} {% include "sidebar.html" %}{% endblock sidebar %}
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

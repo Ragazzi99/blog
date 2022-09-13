@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block header %} {% include 'header.html' %} {% endblock header %}
+{% block carousel %}{% include "carousel.html" %} {% endblock carousel %}
+
+
+{% block content %}
+
+    <div class="container mt-3 mb-5">
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <h4 class="bg-danger text-center text-white mb-4 p-1">NEW POSTS</h4>
+                
+                {% if pagine %}
+                    {% for item in pagine %}
+                    <div class="card mb-3" style="max-width: 800px;">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <a href="{% url 'detail' item.slug %}"><img src="{{item.image.url}}" class="img-fluid rounded-start" style="height: 150px;" width="500px"></a>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body"> 
+                              <a href="{% url 'detail' item.slug %}"><h5 class="card-title mb-3">{{item.title}}</h5></a>
+                              <form action="{% url 'postlike' %}" method="POST"> 
+                                <input type="hidden" name="post_id" value="{{item.id}}">
+                                {% csrf_token %} 
+                                {% if user not in post.liked.all %}
+                                  <button class="btn-primary" type="submit"><span><i class="fas fa-thumbs-up text-black"></i></button><strong>{{item.liked.all.count}} Likes</strong>
+                                {% else %}
+                                  <button class="btn-danger" type="submit"><span><i class="fas fa-thumbs-up text-black"></i></span></button><strong>{{item.liked.all.count}} Likes</strong>
+                                {% endif %}
+                              </form>
+                              <p class="card-text"><small class="text-muted">Posted by {{item.writer}}</small></p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                    
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    {% if pagine.has_previous %}
+                      
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{pagine.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                      
+                    {% endif %}
+
+                    {% for item in pagine.paginator.page_range %}
+                      {% if pagine.number == item %}
+                        
+                      <li class="page-item"><a class="page-link" href="#">{{item}}</a></li>
+                      {% else %}
+                        
+                      <li class="page-item"><a class="page-link" href="?page={{item}}">{{item}}</a></li>
+                      {% endif %}
+                      
+                    {% endfor %}
+
+                    {% if pagine.has_next %}
+                      
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{pagine.next_page_number}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{pagine.paginator.num_pages}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li> 
+                    {% endif %}
+                    
+                    
+                  </ul>
+                </nav>
+
+            </div>
+{% endblock content %}
+{% block sidebar %} {% include "sidebar.html" %}{% endblock sidebar %}
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

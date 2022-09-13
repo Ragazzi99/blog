@@ -1,0 +1,108 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.nav-item a{
+    color: white;
+    font-weight: 700;
+}
+.carousel-item a{
+    text-decoration: none;
+    color: white;
+}
+.carousel-item a:hover{
+    color: black;
+}
+.card a{
+    text-decoration: none;
+    color: black;
+}
+.card a:hover{
+    color: red;
+}
+.songs img{
+    padding-left: 40%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.border .card{
+    border: none;
+}
+.border .rule{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.carousel-control-prev span{
+    background-color: red;
+}
+.carousel-control-next span{
+    background-color: red;
+}
+.det h4{
+    width: 20%;
+    font-size: medium;
+    font-style: italic;
+}
+.det h1{
+    font-weight: bolder;
+}
+.det p{
+    font-size: smaller;
+}
+.det p span{
+    font-weight: bold;
+}
+.det .ptext{
+    font-size: large;
+}
+/* signin page  */
+.form{
+    padding: 5% 25% 10% 30%;
+}
+.form h1{
+    color:black;
+    text-align: center;
+    padding-bottom: 5%;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.form-page{
+    width: 90%;
+    padding-left: 10%;
+}
+.form-page form{
+    width: 100%;
+}
+.form-page .labe{
+    color: black;
+    text-transform: capitalize;
+    font-size: 17px;
+    font-weight: 600;
+    /* margin-left: 1em; */
+
+}
+.form-page input{
+    border: none !important;
+    background: black;
+    opacity: 0.3;
+    height: 30px;
+    margin: 1em;
+    width: 50%;
+}
+.form-page input:focus{
+    box-shadow: 1px 1px 3px 5px black;
+}
+.check-btn{
+    background: black !important;
+    color: white;
+    text-transform: capitalize;
+    margin-top: 5%;
+}
+.check-btn:hover{
+    background: grey !important;
+    color: white;
+}
+/* signup and signin done */

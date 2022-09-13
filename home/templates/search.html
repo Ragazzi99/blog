@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{newcat.category|title}} {% endblock title %}
+{% block header %} {% include 'header.html' %} {% endblock header %}
+
+
+{% block content %}
+<div class="container mt-3 mb-5">
+  {% if items %}
+  <div class="row">
+      <div class="col-12 col-md-8 det">
+          <h4 class="bg-danger text-center text-white mb-4 p-1">Your search for {{items}}</h4>
+         <div class="row">
+           {% if searched_item %}
+             {% for item in searched_item %}
+              <div class="col-12 col-md-6">
+                <div class="card mb-3">
+                 <a href="{% url 'detail' item.slug %}"> <img src="{{item.image.url}}" class="card-img-top" style="height: 250px;"></a>
+                  <div class="card-body">
+                    <a href="{% url 'detail' item.slug %}"><h5 class="card-title mb-3">{{item.title|title}}</h5></a>
+                    <p class="card-text"><small class="text-muted">Posted by: {{item.writer|title}}</small></p>
+                  </div>
+                </div>
+              </div>
+             {% endfor %}
+           {% endif %}
+         </div>
+      </div>
+  {% else %}
+  <h3 class="card-title">You searched for {{items}} is not found</h3>
+  {% endif %}
+  
+{% endblock content %}
+{% block sidebar %} {% include "sidebar.html" %}{% endblock sidebar %}
+{% block footer %} {% include "footer.html" %} {% endblock footer %}
