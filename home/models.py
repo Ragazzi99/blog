@@ -40,7 +40,7 @@ class Blog_Post(models.Model):
     mostviewed = models.BooleanField()
     featured = models.BooleanField()
     newpost = models.BooleanField()
-    created_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):

@@ -50,6 +50,7 @@ def detail(request, theslug):
 
     return render(request, 'detail.html', context)
 
+
 def post_like(request):
     user = request.user
     if request.method == 'POST':
